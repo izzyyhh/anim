@@ -24,9 +24,15 @@ function App() {
   }, []);
 
   const container = useRef(null);
+  const container2 = useRef(null);
   // value between 0 and 1
   const { scrollYProgress } = useScroll({
     target: container,
+    // offset where starts tracking start of container and window
+    offset: ["start start", "end end"],
+  });
+  const { scrollYProgress: scroll2 } = useScroll({
+    target: container2,
     // offset where starts tracking start of container and window
     offset: ["start start", "end end"],
   });
@@ -37,6 +43,10 @@ function App() {
       <div ref={container} className="relative h-[200vh] bg-black">
         <Section1 scrollYProgress={scrollYProgress} />
         <Section2 scrollYProgress={scrollYProgress} />
+      </div>
+      <div ref={container2} className="relative h-[200vh] bg-cyan-500">
+        <Section1 scrollYProgress={scroll2} />
+        <Section2 scrollYProgress={scroll2} />
       </div>
     </ReactLenis>
   );
